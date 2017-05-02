@@ -92,19 +92,9 @@
 		C01DE6851EB7AC17000F8931 /* LocationReminders */ = {
 			isa = PBXGroup;
 			children = (
-				C01DE6891EB7AC17000F8931 /* AppDelegate.h */,
-				C01DE68A1EB7AC17000F8931 /* AppDelegate.m */,
-				C01DE68C1EB7AC17000F8931 /* ViewController.h */,
-				C01DE68D1EB7AC17000F8931 /* ViewController.m */,
-				C01DE6AD1EB928DE000F8931 /* LocationController.h */,
-				C01DE6AE1EB928DE000F8931 /* LocationController.m */,
-				C01DE68F1EB7AC17000F8931 /* Main.storyboard */,
-				C01DE6AA1EB8FF1B000F8931 /* AddReminderViewController.h */,
-				C01DE6AB1EB8FF1B000F8931 /* AddReminderViewController.m */,
-				C01DE6951EB7AC17000F8931 /* Assets.xcassets */,
-				C01DE6971EB7AC17000F8931 /* LaunchScreen.storyboard */,
-				C01DE69A1EB7AC17000F8931 /* Info.plist */,
-				C01DE6921EB7AC17000F8931 /* LocationReminders.xcdatamodeld */,
+				C01DE6B21EB944D0000F8931 /* View */,
+				C01DE6B11EB944C7000F8931 /* Model */,
+				C01DE6B01EB944B9000F8931 /* Controller */,
 				C01DE6861EB7AC17000F8931 /* Supporting Files */,
 			);
 			path = LocationReminders;
@@ -114,6 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				C01DE6871EB7AC17000F8931 /* main.m */,
+				C01DE6951EB7AC17000F8931 /* Assets.xcassets */,
+				C01DE6971EB7AC17000F8931 /* LaunchScreen.storyboard */,
+				C01DE69A1EB7AC17000F8931 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -126,6 +119,37 @@
 				C01DE6A21EB7B2D3000F8931 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C01DE6B01EB944B9000F8931 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C01DE6891EB7AC17000F8931 /* AppDelegate.h */,
+				C01DE68A1EB7AC17000F8931 /* AppDelegate.m */,
+				C01DE68C1EB7AC17000F8931 /* ViewController.h */,
+				C01DE68D1EB7AC17000F8931 /* ViewController.m */,
+				C01DE6AD1EB928DE000F8931 /* LocationController.h */,
+				C01DE6AE1EB928DE000F8931 /* LocationController.m */,
+				C01DE6AA1EB8FF1B000F8931 /* AddReminderViewController.h */,
+				C01DE6AB1EB8FF1B000F8931 /* AddReminderViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C01DE6B11EB944C7000F8931 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C01DE6921EB7AC17000F8931 /* LocationReminders.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C01DE6B21EB944D0000F8931 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C01DE68F1EB7AC17000F8931 /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

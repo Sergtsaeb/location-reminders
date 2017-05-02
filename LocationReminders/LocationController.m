@@ -25,12 +25,10 @@
 }
 
 -(id)init {
-    
     if (self == [super init]) {
         location = [[CLLocation alloc]init];
         locationManager = [[CLLocationManager alloc]init];
     }
-    
     return self;
 }
 

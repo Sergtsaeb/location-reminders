@@ -166,7 +166,7 @@
 }
 
 - (void)locationControllerUpdatedLocation:(CLLocation *)location {
-//    
+//
 //    self.locationManager = [[CLLocationManager alloc]init];
 //    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 //    self.locationManager.delegate = self;
