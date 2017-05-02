@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 @import MapKit;
 
-@interface AddReminderViewController : UIViewController
+@interface AddReminderViewController : UIViewController <UITextFieldDelegate>
 
 @property(strong, nonatomic) NSString *annotationTitle;
 @property(nonatomic) CLLocationCoordinate2D coordinate;
-
 
 @end
