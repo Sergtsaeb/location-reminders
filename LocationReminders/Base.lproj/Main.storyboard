@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cZR-zB-6PD">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,101 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-80-Da7">
+                                <rect key="frame" x="56" y="99.5" width="262.5" height="467"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-31-5my">
+                                <rect key="frame" x="163" y="574" width="49" height="30"/>
+                                <state key="normal" title="Seattle"/>
+                                <connections>
+                                    <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xra-fE-0Ea"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EES-2m-irp">
+                                <rect key="frame" x="145.5" y="599" width="83" height="30"/>
+                                <state key="normal" title="Sacramento"/>
+                                <connections>
+                                    <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SuZ-ao-sXB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hfu-wW-M8Z">
+                                <rect key="frame" x="138.5" y="629" width="97" height="30"/>
+                                <state key="normal" title="San Francisco"/>
+                                <connections>
+                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fwi-47-FeO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ngu-Xd-Wdj"/>
+                            <constraint firstItem="Hfu-wW-M8Z" firstAttribute="top" secondItem="EES-2m-irp" secondAttribute="bottom" id="UYJ-AX-MKc"/>
+                            <constraint firstItem="TUe-31-5my" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W8r-CZ-I5K"/>
+                            <constraint firstItem="TUe-31-5my" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YZE-eJ-D75"/>
+                            <constraint firstItem="Hfu-wW-M8Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YrP-bJ-ex6"/>
+                            <constraint firstItem="TUe-31-5my" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="7.5" id="aD3-7Z-Hu2"/>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="32.5" id="dDV-Zs-wpk"/>
+                            <constraint firstItem="ptG-80-Da7" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="eGw-K1-Mr6"/>
+                            <constraint firstItem="ptG-80-Da7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kdS-3Y-TiF"/>
+                            <constraint firstItem="ptG-80-Da7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oVu-Ja-6DN"/>
+                            <constraint firstItem="ptG-80-Da7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="wVf-NX-ZnG"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="sKg-re-0Fx" appends="YES" id="FVe-QV-KCZ"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="MLL-Ja-9L3"/>
+                    <connections>
+                        <outlet property="mapView" destination="ptG-80-Da7" id="1P5-TA-riS"/>
+                        <segue destination="FMb-eN-Scy" kind="show" identifier="AddReminderViewController" id="jAc-RN-2No"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="sKg-re-0Fx">
+                    <connections>
+                        <action selector="userLongPressed:" destination="BYZ-38-t0r" id="gpt-XB-a3T"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="950" y="104"/>
+        </scene>
+        <!--Add Reminder View Controller-->
+        <scene sceneID="szf-Yi-hw3">
+            <objects>
+                <viewController id="FMb-eN-Scy" customClass="AddReminderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jfg-Qk-7yf"/>
+                        <viewControllerLayoutGuide type="bottom" id="NKO-mL-XkZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OGR-zU-WLP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xEE-Yc-bT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798" y="106"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gqn-1V-Id4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cZR-zB-6PD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wMX-1F-lbo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2JG-vP-uYr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRh-AO-h3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="103.89805097451276"/>
         </scene>
     </scenes>
 </document>
