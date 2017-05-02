@@ -8,7 +8,6 @@
 
 #import "LocationController.h"
 
-
 @implementation LocationController
 @synthesize locationManager;
 @synthesize location;
@@ -34,5 +33,12 @@
     
     return self;
 }
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = locations.lastObject;
+    
+    [self.delegate locationControllerUpdatedLocation:location];
+}
+
 
 @end

@@ -8,11 +8,12 @@
 
 #import "ViewController.h"
 #import "AddReminderViewController.h"
+#import "LocationController.h"
 
 @import Parse;
 @import MapKit;
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -53,11 +54,11 @@
 }
 
 -(void)requestPermissions {
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    self.locationManager = [[CLLocationManager alloc]init];
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100; //meters
     
-    self.locationManager.delegate = self;
+//    self.locationManager.delegate = self;
     
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
@@ -132,16 +133,6 @@
 
 
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *location = locations.lastObject;
-    
-    NSLog(@"Coordinate:%f, %f - Altitude:%f", location.coordinate.latitude,location.coordinate.longitude, location.altitude);
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
-    
-    [self.mapView setRegion:region animated:YES];
-}
-
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -174,5 +165,19 @@
     
 }
 
+- (void)locationControllerUpdatedLocation:(CLLocation *)location {
+//    
+//    self.locationManager = [[CLLocationManager alloc]init];
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    self.locationManager.delegate = self;
+//    [self.locationManager requestWhenInUseAuthorization];
+//    [self.locationManager startUpdatingLocation];
+    
+    NSLog(@"Coordinate:%f, %f - Altitude:%f", location.coordinate.latitude,location.coordinate.longitude, location.altitude);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
+    
+    [self.mapView setRegion:region animated:YES];
+   
+}
 
 @end
