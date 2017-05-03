@@ -34,10 +34,7 @@
     
     
 //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    
-//    testObject[@"testName"] = @"Serg Tsogtbaatar";
 //    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        
 //        if (succeeded) {
 //            NSLog(@"Success saving test object!");
 //        } else {
@@ -45,15 +42,16 @@
 //        }
 //    }];
     
-//    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
-//    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (error) {
-//            NSLog(@"%@", error.localizedDescription);
-//        } else {
-//            NSLog(@"Query Results %@", objects);
-//        }
-//    }];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSLog(@"Query Results %@", objects);
+        }
+    }];
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
     
@@ -61,6 +59,11 @@
         PFLogInViewController *loginViewController = [[PFLogInViewController alloc]init];
         loginViewController.delegate = self;
         loginViewController.signUpController.delegate = self;
+        
+        loginViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton |PFLogInFieldsUsernameAndPassword;
+        
+        loginViewController.logInView.logo = [[UIView alloc]init];
+        
         
         [self presentViewController:loginViewController animated:YES completion:nil];
         
@@ -70,7 +73,10 @@
 
 
 -(void)reminderSavedToParse:(id)sender {
-    NSLog(@"Do some stuff since our new Reminder was sved");
+    NSLog(@"Do some stuff since our new Reminder was saved");
+    
+    
+    
 }
 
 -(void)dealloc{

@@ -23,6 +23,22 @@
     self.name.delegate = self;
     self.reminder.delegate = self;
     
+    
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug – see note below.
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= 15;
+}
+
+- (IBAction)saveReminderPressed:(UIButton *)sender {
+    
     Reminder *newReminder = [Reminder object];
     newReminder.name = self.annotationTitle;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
@@ -32,6 +48,7 @@
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
         
         NSLog(@"Save reminder successful: %i - Error: %@", succeeded, error.localizedDescription);
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
@@ -47,15 +64,5 @@
     
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    // Prevent crashing undo bug – see note below.
-    if(range.length + range.location > textField.text.length)
-    {
-        return NO;
-    }
-    
-    NSUInteger newLength = [textField.text length] + [string length] - range.length;
-    return newLength <= 15;
-}
 
 @end
