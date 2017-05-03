@@ -11,17 +11,22 @@
 
 @interface AddReminderViewController ()
 
-@property(strong, nonatomic)UITextField *name;
-@property(strong, nonatomic)UITextField *reminder;
 
 @end
 
 @implementation AddReminderViewController
 
+@synthesize name;
+@synthesize reminder;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.name.delegate = self;
     self.reminder.delegate = self;
+    
+    NSString *name = self.name.text;
+    NSNumber *reminder = self.reminder.text;
     
     
 }
