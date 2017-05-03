@@ -61,6 +61,11 @@
     NSLog(@"Do some stuff since our new Reminder was sved");
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
+    
+}
+
 -(void)requestPermissions {
 //    self.locationManager = [[CLLocationManager alloc]init];
 //    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -131,10 +136,6 @@
     
 }
 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
-    
-}
 
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
@@ -154,7 +155,6 @@
     }
     
 }
-
 
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {

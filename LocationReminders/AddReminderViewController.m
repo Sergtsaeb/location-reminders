@@ -32,12 +32,12 @@
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
         
         NSLog(@"Save reminder successful: %i - Error: %@", succeeded, error.localizedDescription);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
             
             CGFloat radius = 100; //for lab coming form UISlider/UITextfield
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
-
             self.completion(circle);
             
             [self.navigationController popViewControllerAnimated:YES];
