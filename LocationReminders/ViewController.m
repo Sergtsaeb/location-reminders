@@ -53,6 +53,12 @@
 //        }
 //    }];
     
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+}
+
+-(void)reminderSavedToParse:(id)sender {
+    NSLog(@"Do some stuff since our new Reminder was sved");
 }
 
 -(void)requestPermissions {
@@ -122,6 +128,11 @@
         };
         
     }
+    
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
     
 }
 

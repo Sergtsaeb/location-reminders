@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.name.delegate = self;
+    self.reminder.delegate = self;
     
     Reminder *newReminder = [Reminder object];
     newReminder.name = self.annotationTitle;
@@ -35,6 +37,7 @@
             
             CGFloat radius = 100; //for lab coming form UISlider/UITextfield
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+
             self.completion(circle);
             
             [self.navigationController popViewControllerAnimated:YES];
@@ -42,8 +45,6 @@
         
     }];
     
-    self.name.delegate = self;
-    self.reminder.delegate = self;
     
 }
 
