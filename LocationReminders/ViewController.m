@@ -108,7 +108,18 @@
         
         newReminderViewController.coordinate = annotationView.annotation.coordinate;
         newReminderViewController.annotationTitle = annotationView.annotation.title;
+        newReminderViewController.title = annotationView.annotation.title;
         
+        __weak typeof(self) bruce = self;
+        
+        
+        
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            __strong typeof(bruce) hulk = bruce;
+            [hulk.mapView removeAnnotation:annotationView.annotation];
+            [hulk.mapView addOverlay:circle];
+            
+        };
         
     }
     
@@ -166,6 +177,16 @@
     [self performSegueWithIdentifier:@"AddReminderViewController" sender:view];
     
 }
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+  
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    renderer.strokeColor = [UIColor redColor];
+    renderer.fillColor = [UIColor whiteColor];
+    renderer.alpha = 0.5;
+    
+    return renderer;
+};
 
 - (void)locationControllerUpdatedLocation:(CLLocation *)location {
 //
