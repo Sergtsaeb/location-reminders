@@ -29,6 +29,8 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     
+    
+    
 //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
 //    
 //    testObject[@"testName"] = @"Serg Tsogtbaatar";

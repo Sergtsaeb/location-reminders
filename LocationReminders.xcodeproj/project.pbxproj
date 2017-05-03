@@ -21,6 +21,7 @@
 		C01DE6A91EB7C0B9000F8931 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01DE6A81EB7C0B9000F8931 /* MapKit.framework */; };
 		C01DE6AC1EB8FF1B000F8931 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01DE6AB1EB8FF1B000F8931 /* AddReminderViewController.m */; };
 		C01DE6AF1EB928DE000F8931 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01DE6AE1EB928DE000F8931 /* LocationController.m */; };
+		C05677241EBA465900231828 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = C05677231EBA465900231828 /* Reminder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,8 @@
 		C01DE6AB1EB8FF1B000F8931 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
 		C01DE6AD1EB928DE000F8931 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
 		C01DE6AE1EB928DE000F8931 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		C05677221EBA465900231828 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		C05677231EBA465900231828 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				C01DE6921EB7AC17000F8931 /* LocationReminders.xcdatamodeld */,
+				C05677221EBA465900231828 /* Reminder.h */,
+				C05677231EBA465900231828 /* Reminder.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				C01DE68E1EB7AC17000F8931 /* ViewController.m in Sources */,
 				C01DE68B1EB7AC17000F8931 /* AppDelegate.m in Sources */,
 				C01DE6881EB7AC17000F8931 /* main.m in Sources */,
+				C05677241EBA465900231828 /* Reminder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +408,7 @@
 				C01DE69F1EB7AC17000F8931 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
