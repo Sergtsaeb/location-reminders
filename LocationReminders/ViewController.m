@@ -12,8 +12,10 @@
 
 @import Parse;
 @import MapKit;
+@import ParseUI;
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate>
+
+@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -29,11 +31,10 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     
+    
+    
 //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    
-//    testObject[@"testName"] = @"Serg Tsogtbaatar";
 //    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        
 //        if (succeeded) {
 //            NSLog(@"Success saving test object!");
 //        } else {
@@ -41,15 +42,45 @@
 //        }
 //    }];
     
-//    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
-//    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (error) {
-//            NSLog(@"%@", error.localizedDescription);
-//        } else {
-//            NSLog(@"Query Results %@", objects);
-//        }
-//    }];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSLog(@"Query Results %@", objects);
+        }
+    }];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+    if (![PFUser currentUser]) {
+        PFLogInViewController *loginViewController = [[PFLogInViewController alloc]init];
+        loginViewController.delegate = self;
+        loginViewController.signUpController.delegate = self;
+        
+        loginViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton |PFLogInFieldsUsernameAndPassword;
+        
+        loginViewController.logInView.logo = [[UIView alloc]init];
+        
+        
+        [self presentViewController:loginViewController animated:YES completion:nil];
+        
+    }
+    
+}
+
+
+-(void)reminderSavedToParse:(id)sender {
+    NSLog(@"Do some stuff since our new Reminder was saved");
+    
+    
+    
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
     
 }
 
@@ -106,11 +137,23 @@
         
         newReminderViewController.coordinate = annotationView.annotation.coordinate;
         newReminderViewController.annotationTitle = annotationView.annotation.title;
+        newReminderViewController.title = annotationView.annotation.title;
         
+        __weak typeof(self) bruce = self;
+        
+        
+        
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            __strong typeof(bruce) hulk = bruce;
+            [hulk.mapView removeAnnotation:annotationView.annotation];
+            [hulk.mapView addOverlay:circle];
+            
+        };
         
     }
     
 }
+
 
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
@@ -130,7 +173,6 @@
     }
     
 }
-
 
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -165,8 +207,18 @@
     
 }
 
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+  
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    renderer.strokeColor = [UIColor redColor];
+    renderer.fillColor = [UIColor whiteColor];
+    renderer.alpha = 0.5;
+    
+    return renderer;
+};
+
 - (void)locationControllerUpdatedLocation:(CLLocation *)location {
-//    
+//
 //    self.locationManager = [[CLLocationManager alloc]init];
 //    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 //    self.locationManager.delegate = self;
@@ -178,6 +230,14 @@
     
     [self.mapView setRegion:region animated:YES];
    
+}
+
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

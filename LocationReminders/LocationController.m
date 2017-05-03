@@ -25,19 +25,17 @@
 }
 
 -(id)init {
-    
     if (self == [super init]) {
         location = [[CLLocation alloc]init];
         locationManager = [[CLLocationManager alloc]init];
     }
-    
     return self;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *location = locations.lastObject;
     
-    [self.delegate locationControllerUpdatedLocation:location];
+    [self.delegate locationControllerUpdatedLocation: location];
 }
 
 

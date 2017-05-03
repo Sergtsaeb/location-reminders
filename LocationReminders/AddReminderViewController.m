@@ -7,24 +7,65 @@
 //
 
 #import "AddReminderViewController.h"
+#import "Reminder.h"
 
 @interface AddReminderViewController ()
+
 
 @end
 
 @implementation AddReminderViewController
 
+@synthesize name;
+@synthesize reminder;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.name.delegate = self;
+    self.reminder.delegate = self;
     
-    NSLog(@"%@", self.annotationTitle);
-    NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
+    NSString *name = self.name.text;
+    NSNumber *reminder = self.reminder.text;
+    
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug – see note below.
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
     
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= 15;
+}
+
+- (IBAction)saveReminderPressed:(UIButton *)sender {
+    
+    Reminder *newReminder = [Reminder object];
+    newReminder.name = self.annotationTitle;
+    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    
+    [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        NSLog(@"%@", self.annotationTitle);
+        NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
+        
+        NSLog(@"Save reminder successful: %i - Error: %@", succeeded, error.localizedDescription);
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
+        
+        if (self.completion) {
+            
+            CGFloat radius = 100; //for lab coming form UISlider/UITextfield
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+            self.completion(circle);
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    }];
     
 }
 
