@@ -16,23 +16,24 @@
 
 @implementation AddReminderViewController
 
-@synthesize name;
-@synthesize reminder;
+@synthesize nameTextField;
+@synthesize reminderTextField;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.name.delegate = self;
-    self.reminder.delegate = self;
     
-    NSString *name = self.name.text;
-    NSNumber *reminder = self.reminder.text;
+    NSString *name = self.nameTextField.text;
+    NSNumber *reminder = self.reminderTextField.text;
+    
+    self.nameTextField.delegate = self;
+    self.reminderTextField.delegate = self;
     
     
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    // Prevent crashing undo bug – see note below.
+    
     if(range.length + range.location > textField.text.length)
     {
         return NO;
@@ -64,9 +65,7 @@
             
             [self.navigationController popViewControllerAnimated:YES];
         }
-        
     }];
-    
 }
 
 

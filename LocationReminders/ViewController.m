@@ -28,30 +28,10 @@
     [super viewDidLoad];
    
     [self requestPermissions];
+    [self fetchReminders];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     
-    
-    
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (succeeded) {
-//            NSLog(@"Success saving test object!");
-//        } else {
-//            NSLog(@"There was a problem saving. Save error: %@", error.localizedDescription);
-//        }
-//    }];
-    
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            NSLog(@"Query Results %@", objects);
-        }
-    }];
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
     
@@ -76,6 +56,20 @@
     NSLog(@"Do some stuff since our new Reminder was saved");
     
     
+    
+}
+
+-(void)fetchReminders {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSLog(@"Query Results %@", objects);
+        }
+    }];
     
 }
 
