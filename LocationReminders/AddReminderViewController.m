@@ -8,6 +8,7 @@
 
 #import "AddReminderViewController.h"
 #import "Reminder.h"
+#import "LocationController.h"
 
 @interface AddReminderViewController ()
 
@@ -17,17 +18,16 @@
 @implementation AddReminderViewController
 
 @synthesize nameTextField;
-@synthesize reminderTextField;
-
+@synthesize radiusTextField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSString *name = self.nameTextField.text;
-    NSNumber *reminder = self.reminderTextField.text;
+    NSNumber *radius = self.radiusTextField.text;
     
     self.nameTextField.delegate = self;
-    self.reminderTextField.delegate = self;
+    self.radiusTextField.delegate = self;
     
     
 }
@@ -48,6 +48,8 @@
     Reminder *newReminder = [Reminder object];
     newReminder.name = self.annotationTitle;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    newReminder.name = nameTextField.text.description;
+    
     
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"%@", self.annotationTitle);
@@ -58,15 +60,22 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
+            CGFloat radius = 100;
+//            [NSNumber numberWithFloat: self.radiusTextField.text]; //for lab coming form UISlider/UITextfield
             
-            CGFloat radius = 100; //for lab coming form UISlider/UITextfield
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
-            self.completion(circle);
             
+            if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
+                
+                [LocationController.sharedLocationController startMonitoringForRegion:region];
+                
+            }
+            
+            self.completion(circle);
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
-
 
 @end

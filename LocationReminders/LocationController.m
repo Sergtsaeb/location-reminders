@@ -32,11 +32,42 @@
     return self;
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *location = locations.lastObject;
+-(void)startMonitoringForRegion:(CLRegion *)region {
     
-    [self.delegate locationControllerUpdatedLocation: location];
+    [self.locationManager startMonitoringForRegion:region];
+    
 }
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = locations.lastObject;
+    self.location = location;
+    
+    [self.delegate locationControllerUpdatedLocation:location];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(nonnull CLRegion *)region {
+    
+    NSLog(@"User did Enter region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(nonnull CLRegion *)region {
+    
+    NSLog(@"User did Exit region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(nonnull NSError *)error {
+    
+    NSLog(@"There was an error: %@", error.localizedDescription);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didVisit:(nonnull CLVisit *)visit {
+    
+    NSLog(@"This is here for no reason, but heres a visit: %@", visit);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(nonnull CLRegion *)region {
+    
+    NSLog(@"We have successfully started monitoring for changes for region: %@", region.identifier);
+}
 
 @end

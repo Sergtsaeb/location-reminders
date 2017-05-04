@@ -44,19 +44,13 @@
         
         loginViewController.logInView.logo = [[UIView alloc]init];
         
-        
         [self presentViewController:loginViewController animated:YES completion:nil];
         
     }
-    
 }
-
 
 -(void)reminderSavedToParse:(id)sender {
     NSLog(@"Do some stuff since our new Reminder was saved");
-    
-    
-    
 }
 
 -(void)fetchReminders {
@@ -134,8 +128,6 @@
         newReminderViewController.title = annotationView.annotation.title;
         
         __weak typeof(self) bruce = self;
-        
-        
         
         newReminderViewController.completion = ^(MKCircle *circle) {
             __strong typeof(bruce) hulk = bruce;
