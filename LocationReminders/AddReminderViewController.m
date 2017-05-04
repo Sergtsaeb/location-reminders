@@ -63,13 +63,15 @@
             CGFloat radius = 100;
 //            [NSNumber numberWithFloat: self.radiusTextField.text]; //for lab coming form UISlider/UITextfield
             
+            //this is where i want to loop over reminder objects and present them as overlays
+            
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
             
             if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
                 CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
                 
                 [LocationController.sharedLocationController startMonitoringForRegion:region];
-                
+                //code for lab
             }
             
             self.completion(circle);

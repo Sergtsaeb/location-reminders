@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
+#import "AddReminderViewController.h"
 
 @import Parse;
 @import MapKit;
@@ -64,6 +65,8 @@
             NSLog(@"Query Results %@", objects);
         }
     }];
+    
+    
     
 }
 
@@ -225,5 +228,6 @@
 -(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end
