@@ -17,14 +17,11 @@
 
 @implementation AddReminderViewController
 
-@synthesize nameTextField;
-@synthesize radiusTextField;
+//@synthesize nameTextField;
+//@synthesize radiusTextField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSString *name = self.nameTextField.text;
-    NSNumber *radius = self.radiusTextField.text;
     
     self.nameTextField.delegate = self;
     self.radiusTextField.delegate = self;
@@ -47,12 +44,16 @@
     
     Reminder *newReminder = [Reminder object];
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
-    newReminder.name = nameTextField.text;
+    newReminder.name = self.nameTextField.text;
+    
     NSNumber *radius = [NSNumber numberWithFloat:self.radiusTextField.text.floatValue];
     if (radius == 0) {
         radius = [NSNumber numberWithFloat:100];
     }
     newReminder.radius = radius;
+    
+    NSLog(@"%@", newReminder.name);
+    NSLog(@"%@", newReminder.radius);
     
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"%@", self.annotationTitle);
@@ -63,18 +64,14 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
-            CGFloat radius = 100;
-//            [NSNumber numberWithFloat: self.radiusTextField.text]; //for lab coming form UISlider/UITextfield
+            CGFloat overlayRadius = radius.floatValue;
             
-            //this is where i want to loop over reminder objects and present them as overlays
-            
-            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:overlayRadius];
             
             if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
+                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:overlayRadius identifier:newReminder.name];
                 
                 [LocationController.sharedLocationController startMonitoringForRegion:region];
-                //code for lab
             }
             
             self.completion(circle);

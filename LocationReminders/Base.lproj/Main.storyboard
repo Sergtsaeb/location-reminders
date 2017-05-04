@@ -126,6 +126,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="8rv-S0-9NK" id="EnU-6W-yXA"/>
+                        <outlet property="radiusTextField" destination="QKl-49-1BQ" id="xpM-F5-oh0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEE-Yc-bT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

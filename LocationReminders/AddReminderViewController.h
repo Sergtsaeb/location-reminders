@@ -12,9 +12,9 @@
 typedef void(^NewReminderCreatedCompletion)(MKCircle *);
 
 @interface AddReminderViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
-@property(strong, nonatomic)UITextField *nameTextField;
-@property(strong, nonatomic)UITextField *radiusTextField;
+@property (weak, nonatomic) IBOutlet UITextField *radiusTextField;
 
 @property(strong, nonatomic) NSString *annotationTitle;
 @property(nonatomic) CLLocationCoordinate2D coordinate;
