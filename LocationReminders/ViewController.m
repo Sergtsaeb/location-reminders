@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
-#import "AddReminderViewController.h"
+#import "Reminder.h"
 
 @import Parse;
 @import MapKit;
@@ -63,6 +63,19 @@
             NSLog(@"%@", error.localizedDescription);
         } else {
             NSLog(@"Query Results %@", objects);
+            
+            
+            for (Reminder *reminder in objects) {
+                
+                reminder.location = [PFGeoPoint geoPointWithLatitude:reminder.location.latitude longitude:reminder.location.longitude];
+                
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+                
+                MKCircle *reminderCircle = [MKCircle circleWithCenterCoordinate:coordinate radius: reminder.radius.doubleValue];
+                
+                [self.mapView addOverlay: reminderCircle];
+                
+            }
         }
     }];
     
@@ -114,7 +127,6 @@
     MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance(coordinate, 600.0, 600.0);
     
     [self.mapView setRegion:region animated:YES];
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -138,29 +150,23 @@
             [hulk.mapView addOverlay:circle];
             
         };
-        
     }
-    
 }
 
 
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        
         CGPoint touchPoint = [sender locationInView:self.mapView];
         
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
         
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-        
         newPoint.coordinate = coordinate;
         newPoint.title = @"New location ayy";
         
         [self.mapView addAnnotation:newPoint];
-        
     }
-    
 }
 
 
