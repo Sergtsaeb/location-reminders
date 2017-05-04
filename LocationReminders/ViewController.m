@@ -64,7 +64,6 @@
         } else {
             NSLog(@"Query Results %@", objects);
             
-            
             for (Reminder *reminder in objects) {
                 
                 reminder.location = [PFGeoPoint geoPointWithLatitude:reminder.location.latitude longitude:reminder.location.longitude];

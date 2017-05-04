@@ -46,10 +46,13 @@
 - (IBAction)saveReminderPressed:(UIButton *)sender {
     
     Reminder *newReminder = [Reminder object];
-    newReminder.name = self.annotationTitle;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
-    newReminder.name = nameTextField.text.description;
-    
+    newReminder.name = nameTextField.text;
+    NSNumber *radius = [NSNumber numberWithFloat:self.radiusTextField.text.floatValue];
+    if (radius == 0) {
+        radius = [NSNumber numberWithFloat:100];
+    }
+    newReminder.radius = radius;
     
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"%@", self.annotationTitle);
