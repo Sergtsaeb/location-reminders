@@ -73,12 +73,9 @@
                 MKCircle *reminderCircle = [MKCircle circleWithCenterCoordinate:coordinate radius: reminder.radius.doubleValue];
                 
                 [self.mapView addOverlay: reminderCircle];
-                
             }
         }
     }];
-    
-    
     
 }
 
