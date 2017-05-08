@@ -8,6 +8,7 @@
 
 #import "AddReminderViewController.h"
 #import "Reminder.h"
+#import "LocationController.h"
 
 @interface AddReminderViewController ()
 
@@ -16,23 +17,20 @@
 
 @implementation AddReminderViewController
 
-@synthesize name;
-@synthesize reminder;
-
+//@synthesize nameTextField;
+//@synthesize radiusTextField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.name.delegate = self;
-    self.reminder.delegate = self;
     
-    NSString *name = self.name.text;
-    NSNumber *reminder = self.reminder.text;
+    self.nameTextField.delegate = self;
+    self.radiusTextField.delegate = self;
     
     
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    // Prevent crashing undo bug – see note below.
+    
     if(range.length + range.location > textField.text.length)
     {
         return NO;
@@ -45,8 +43,17 @@
 - (IBAction)saveReminderPressed:(UIButton *)sender {
     
     Reminder *newReminder = [Reminder object];
-    newReminder.name = self.annotationTitle;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    newReminder.name = self.nameTextField.text;
+    
+    NSNumber *radius = [NSNumber numberWithFloat:self.radiusTextField.text.floatValue];
+    if (radius == 0) {
+        radius = [NSNumber numberWithFloat:100];
+    }
+    newReminder.radius = radius;
+    
+    NSLog(@"%@", newReminder.name);
+    NSLog(@"%@", newReminder.radius);
     
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"%@", self.annotationTitle);
@@ -57,17 +64,20 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
+            CGFloat overlayRadius = radius.floatValue;
             
-            CGFloat radius = 100; //for lab coming form UISlider/UITextfield
-            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:overlayRadius];
+            
+            if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:overlayRadius identifier:newReminder.name];
+                
+                [LocationController.sharedLocationController startMonitoringForRegion:region];
+            }
+            
             self.completion(circle);
-            
             [self.navigationController popViewControllerAnimated:YES];
         }
-        
     }];
-    
 }
-
 
 @end

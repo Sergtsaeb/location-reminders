@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
+#import "Reminder.h"
 
 @import Parse;
 @import MapKit;
@@ -28,30 +29,10 @@
     [super viewDidLoad];
    
     [self requestPermissions];
+    [self fetchReminders];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     
-    
-    
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (succeeded) {
-//            NSLog(@"Success saving test object!");
-//        } else {
-//            NSLog(@"There was a problem saving. Save error: %@", error.localizedDescription);
-//        }
-//    }];
-    
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            NSLog(@"Query Results %@", objects);
-        }
-    }];
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
     
@@ -64,18 +45,37 @@
         
         loginViewController.logInView.logo = [[UIView alloc]init];
         
-        
         [self presentViewController:loginViewController animated:YES completion:nil];
         
     }
-    
 }
-
 
 -(void)reminderSavedToParse:(id)sender {
     NSLog(@"Do some stuff since our new Reminder was saved");
+}
+
+-(void)fetchReminders {
     
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
     
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSLog(@"Query Results %@", objects);
+            
+            for (Reminder *reminder in objects) {
+                
+                reminder.location = [PFGeoPoint geoPointWithLatitude:reminder.location.latitude longitude:reminder.location.longitude];
+                
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+                
+                MKCircle *reminderCircle = [MKCircle circleWithCenterCoordinate:coordinate radius: reminder.radius.doubleValue];
+                
+                [self.mapView addOverlay: reminderCircle];
+            }
+        }
+    }];
     
 }
 
@@ -123,7 +123,6 @@
     MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance(coordinate, 600.0, 600.0);
     
     [self.mapView setRegion:region animated:YES];
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -141,37 +140,29 @@
         
         __weak typeof(self) bruce = self;
         
-        
-        
         newReminderViewController.completion = ^(MKCircle *circle) {
             __strong typeof(bruce) hulk = bruce;
             [hulk.mapView removeAnnotation:annotationView.annotation];
             [hulk.mapView addOverlay:circle];
             
         };
-        
     }
-    
 }
 
 
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        
         CGPoint touchPoint = [sender locationInView:self.mapView];
         
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
         
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-        
         newPoint.coordinate = coordinate;
         newPoint.title = @"New location ayy";
         
         [self.mapView addAnnotation:newPoint];
-        
     }
-    
 }
 
 
@@ -239,5 +230,6 @@
 -(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

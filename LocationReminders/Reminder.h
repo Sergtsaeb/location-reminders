@@ -15,5 +15,4 @@
 @property(strong, nonatomic) PFGeoPoint *location;
 @property(strong, nonatomic) NSNumber *radius;
 
-
 @end
