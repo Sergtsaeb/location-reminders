@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cZR-zB-6PD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Ey-PD-U3F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--Map View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="Map View" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -23,26 +23,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-80-Da7">
-                                <rect key="frame" x="0.0" y="64" width="375" height="502"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-80-Da7">
+                                <rect key="frame" x="0.0" y="58" width="375" height="508"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-31-5my">
-                                <rect key="frame" x="251" y="584" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-31-5my">
+                                <rect key="frame" x="256" y="575" width="80" height="30"/>
                                 <state key="normal" title="San Diego"/>
                                 <connections>
                                     <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xra-fE-0Ea"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EES-2m-irp">
-                                <rect key="frame" x="162" y="587" width="51" height="26"/>
+                                <rect key="frame" x="162" y="573" width="51" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Seattle"/>
                                 <connections>
                                     <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SuZ-ao-sXB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVj-SG-R0Z">
+                                <rect key="frame" x="29" y="578" width="87" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Indianapolis"/>
+                                <connections>
+                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EKR-qz-7ii"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyt-V6-pz0">
-                                <rect key="frame" x="316" y="509" width="43" height="42"/>
+                                <rect key="frame" x="316" y="508" width="43" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Rmr-yz-2mm"/>
                                     <constraint firstAttribute="width" constant="43" id="fV9-tK-Jlh"/>
@@ -52,39 +60,40 @@
                                     <action selector="recenter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R1s-nF-8r9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVj-SG-R0Z">
-                                <rect key="frame" x="28" y="581" width="87" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Indianapolis"/>
-                                <connections>
-                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EKR-qz-7ii"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOJ-xP-EMh">
+                                <rect key="frame" x="24" y="20" width="327" height="30"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="LVj-SG-R0Z" firstAttribute="leading" secondItem="EES-2m-irp" secondAttribute="trailing" constant="-185" id="4vt-mi-DQp"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LVj-SG-R0Z" secondAttribute="bottom" constant="54" id="8fR-29-KNv"/>
-                            <constraint firstItem="LVj-SG-R0Z" firstAttribute="bottom" secondItem="TUe-31-5my" secondAttribute="bottom" constant="-1" id="Alm-0L-ArG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LVj-SG-R0Z" secondAttribute="trailing" constant="244" id="E27-pE-fjW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LVj-SG-R0Z" secondAttribute="bottom" constant="8" symbolic="YES" id="2GQ-Si-Dzt"/>
+                            <constraint firstItem="YOJ-xP-EMh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="B9b-xT-m2N"/>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="leading" secondItem="LVj-SG-R0Z" secondAttribute="trailing" constant="46" id="EHv-aX-LIw"/>
+                            <constraint firstItem="TUe-31-5my" firstAttribute="leading" secondItem="EES-2m-irp" secondAttribute="trailing" constant="43" id="H5D-ax-mQC"/>
                             <constraint firstItem="EES-2m-irp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ngu-Xd-Wdj"/>
-                            <constraint firstItem="TUe-31-5my" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="103.5" id="W8r-CZ-I5K"/>
-                            <constraint firstItem="TUe-31-5my" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="103.5" id="YZE-eJ-D75"/>
+                            <constraint firstItem="YOJ-xP-EMh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YmA-aY-xzx"/>
                             <constraint firstItem="Eyt-V6-pz0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ZCI-Qx-qgs"/>
-                            <constraint firstItem="TUe-31-5my" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="18" id="aD3-7Z-Hu2"/>
-                            <constraint firstItem="EES-2m-irp" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="21" id="dDV-Zs-wpk"/>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="7" id="dDV-Zs-wpk"/>
                             <constraint firstItem="ptG-80-Da7" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" constant="35.100000000000023" id="eGw-K1-Mr6"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Eyt-V6-pz0" secondAttribute="bottom" constant="116" id="ggI-ob-3bK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TUe-31-5my" secondAttribute="trailing" constant="23" id="fOZ-Ha-rku"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Eyt-V6-pz0" secondAttribute="bottom" constant="68" id="ggI-ob-3bK"/>
                             <constraint firstItem="ptG-80-Da7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kdS-3Y-TiF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YOJ-xP-EMh" secondAttribute="trailing" constant="8" id="oQM-3e-aN3"/>
                             <constraint firstItem="ptG-80-Da7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-18.5" id="oVu-Ja-6DN"/>
-                            <constraint firstItem="LVj-SG-R0Z" firstAttribute="bottom" secondItem="EES-2m-irp" secondAttribute="bottom" id="qwI-x2-3dd"/>
                             <constraint firstItem="ptG-80-Da7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" constant="112.5" id="wVf-NX-ZnG"/>
+                            <constraint firstItem="TUe-31-5my" firstAttribute="bottom" secondItem="EES-2m-irp" secondAttribute="bottom" id="xTs-Al-Yw2"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="sKg-re-0Fx" appends="YES" id="FVe-QV-KCZ"/>
                         </connections>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="mapTab" selectedImage="mapTab" id="KV8-Sh-1rQ">
+                        <inset key="imageInsets" minX="25" minY="25" maxX="25" maxY="25"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Map View" id="MLL-Ja-9L3"/>
                     <connections>
                         <outlet property="mapView" destination="ptG-80-Da7" id="1P5-TA-riS"/>
@@ -98,7 +107,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="949.60000000000002" y="103.89805097451276"/>
+            <point key="canvasLocation" x="1888.8" y="103.89805097451276"/>
         </scene>
         <!--Add Reminder View Controller-->
         <scene sceneID="szf-Yi-hw3">
@@ -161,29 +170,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEE-Yc-bT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797.5999999999999" y="105.69715142428787"/>
+            <point key="canvasLocation" x="2736.8000000000002" y="105.69715142428787"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Gqn-1V-Id4">
+        <!--Tab Bar Controller-->
+        <scene sceneID="bhT-iJ-9h3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cZR-zB-6PD" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6Ey-PD-U3F" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wMX-1F-lbo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="cqa-l5-0jz">
                         <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2JG-vP-uYr"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="90h-pz-mAX"/>
+                        <segue destination="7Xq-sk-dEp" kind="relationship" relationship="viewControllers" id="nxi-RH-Ms2"/>
+                        <segue destination="Vix-Tc-JZy" kind="relationship" relationship="viewControllers" id="h5N-RU-u6q"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dRh-AO-h3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQZ-DA-Ro5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="103.89805097451276"/>
+            <point key="canvasLocation" x="949.60000000000002" y="103.89805097451276"/>
+        </scene>
+        <!--Energy View Controller-->
+        <scene sceneID="11L-xc-cOp">
+            <objects>
+                <viewController id="7Xq-sk-dEp" customClass="EnergyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LcH-FG-fLz"/>
+                        <viewControllerLayoutGuide type="bottom" id="7kO-EI-Zmz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tBg-GQ-xbT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="energyTab" id="ZVr-E1-In9">
+                        <inset key="imageInsets" minX="25" minY="30" maxX="25" maxY="20"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ifK-Hg-5Sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950" y="813"/>
+        </scene>
+        <!--Visual Data View Controller-->
+        <scene sceneID="m1J-KD-VVU">
+            <objects>
+                <viewController id="Vix-Tc-JZy" customClass="VisualDataViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dya-gL-Ou4"/>
+                        <viewControllerLayoutGuide type="bottom" id="rsW-8v-wx3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ScL-4e-DCF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="dataTab" id="ANF-Uh-MU2">
+                        <inset key="imageInsets" minX="25" minY="30" maxX="25" maxY="20"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V14-r3-MZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1889" y="813"/>
         </scene>
     </scenes>
     <resources>
         <image name="cl.background" width="341" height="206"/>
+        <image name="dataTab" width="170" height="170"/>
+        <image name="energyTab" width="170" height="170"/>
+        <image name="mapTab" width="170" height="170"/>
         <image name="recenter" width="170" height="170"/>
         <image name="textfield images" width="133" height="100"/>
     </resources>
