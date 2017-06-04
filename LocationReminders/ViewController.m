@@ -43,6 +43,7 @@
         
         loginViewController.logInView.logo = [[UIView alloc]init];
         
+        
         [self presentViewController:loginViewController animated:YES completion:nil];
         
     }

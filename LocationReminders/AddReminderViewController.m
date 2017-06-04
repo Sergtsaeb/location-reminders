@@ -75,7 +75,7 @@
             }
             
             self.completion(circle);
-            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
 }
