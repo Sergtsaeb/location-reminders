@@ -15,7 +15,6 @@
 @import MapKit;
 @import ParseUI;
 
-
 @interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -33,7 +32,6 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     
-    
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
     
     if (![PFUser currentUser]) {
@@ -45,13 +43,14 @@
         
         loginViewController.logInView.logo = [[UIView alloc]init];
         
+        
         [self presentViewController:loginViewController animated:YES completion:nil];
         
     }
 }
 
 -(void)reminderSavedToParse:(id)sender {
-    NSLog(@"Do some stuff since our new Reminder was saved");
+    NSLog(@"Do some stuff since our new node was saved");
 }
 
 -(void)fetchReminders {
@@ -85,31 +84,34 @@
 }
 
 -(void)requestPermissions {
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100; //meters
-    
-//    self.locationManager.delegate = self;
+    self.locationManager.delegate = self;
     
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
     
 }
+- (IBAction)recenter:(UIButton *)sender {
+    NSLog(@"recenter button clicked");
+    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
+}
+
 
 - (IBAction)location1Pressed:(id)sender {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.608013, -122.335167);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(32.7157, -117.1611);
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
     
     MKPointAnnotation *point = [[MKPointAnnotation alloc]init];
     point.coordinate = coordinate;
-//    point.title
     
     [self.mapView setRegion:region animated:YES];
 }
 
 - (IBAction)location2Pressed:(id)sender {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(38.575764, -121.478851);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6205, -122.3493);
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 600.0, 600.0);
     
@@ -118,9 +120,9 @@
 }
 
 - (IBAction)location3Pressed:(id)sender {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(13.04016, 80.243044);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(39.7684, -86.1581);
     
-    MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance(coordinate, 600.0, 600.0);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 600.0, 600.0);
     
     [self.mapView setRegion:region animated:YES];
 }
@@ -159,7 +161,7 @@
         
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         newPoint.coordinate = coordinate;
-        newPoint.title = @"New location ayy";
+        newPoint.title = @"Local microgrid";
         
         [self.mapView addAnnotation:newPoint];
     }
@@ -209,13 +211,13 @@
 };
 
 - (void)locationControllerUpdatedLocation:(CLLocation *)location {
-//
+
 //    self.locationManager = [[CLLocationManager alloc]init];
 //    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 //    self.locationManager.delegate = self;
 //    [self.locationManager requestWhenInUseAuthorization];
 //    [self.locationManager startUpdatingLocation];
-    
+//    
     NSLog(@"Coordinate:%f, %f - Altitude:%f", location.coordinate.latitude,location.coordinate.longitude, location.altitude);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
     

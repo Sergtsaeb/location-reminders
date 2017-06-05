@@ -49,10 +49,7 @@
         if (granted) {
             NSLog(@"The user has allowed permissions for notications");
         }
-        
-        
     }];
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
