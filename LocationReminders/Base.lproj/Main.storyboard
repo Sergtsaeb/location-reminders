@@ -24,33 +24,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ptG-80-Da7">
-                                <rect key="frame" x="0.0" y="58" width="375" height="508"/>
+                                <rect key="frame" x="0.0" y="58" width="375" height="524"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-31-5my">
-                                <rect key="frame" x="256" y="575" width="80" height="30"/>
-                                <state key="normal" title="San Diego"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-31-5my">
+                                <rect key="frame" x="260" y="583" width="91" height="35"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <state key="normal" title="San Diego">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xra-fE-0Ea"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EES-2m-irp">
-                                <rect key="frame" x="162" y="573" width="51" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Seattle"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EES-2m-irp">
+                                <rect key="frame" x="162" y="583" width="60" height="35"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <state key="normal" title="Seattle">
+                                    <color key="titleColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SuZ-ao-sXB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVj-SG-R0Z">
-                                <rect key="frame" x="29" y="578" width="87" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Indianapolis"/>
-                                <connections>
-                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EKR-qz-7ii"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyt-V6-pz0">
-                                <rect key="frame" x="316" y="508" width="43" height="42"/>
+                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyt-V6-pz0">
+                                <rect key="frame" x="316" y="521" width="43" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Rmr-yz-2mm"/>
                                     <constraint firstAttribute="width" constant="43" id="fV9-tK-Jlh"/>
@@ -66,24 +63,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVj-SG-R0Z">
+                                <rect key="frame" x="24" y="589" width="101" height="29"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <state key="normal" title="Indianapolis">
+                                    <color key="titleColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EKR-qz-7ii"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LVj-SG-R0Z" secondAttribute="bottom" constant="8" symbolic="YES" id="2GQ-Si-Dzt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LVj-SG-R0Z" secondAttribute="bottom" id="2GQ-Si-Dzt"/>
                             <constraint firstItem="YOJ-xP-EMh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="B9b-xT-m2N"/>
-                            <constraint firstItem="EES-2m-irp" firstAttribute="leading" secondItem="LVj-SG-R0Z" secondAttribute="trailing" constant="46" id="EHv-aX-LIw"/>
-                            <constraint firstItem="TUe-31-5my" firstAttribute="leading" secondItem="EES-2m-irp" secondAttribute="trailing" constant="43" id="H5D-ax-mQC"/>
-                            <constraint firstItem="EES-2m-irp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ngu-Xd-Wdj"/>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="leading" secondItem="LVj-SG-R0Z" secondAttribute="trailing" constant="37" id="EHv-aX-LIw"/>
+                            <constraint firstItem="TUe-31-5my" firstAttribute="leading" secondItem="EES-2m-irp" secondAttribute="trailing" constant="38" id="H5D-ax-mQC"/>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="4.5" id="Ngu-Xd-Wdj"/>
                             <constraint firstItem="YOJ-xP-EMh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YmA-aY-xzx"/>
                             <constraint firstItem="Eyt-V6-pz0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ZCI-Qx-qgs"/>
-                            <constraint firstItem="EES-2m-irp" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="7" id="dDV-Zs-wpk"/>
-                            <constraint firstItem="ptG-80-Da7" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" constant="41.100000000000023" id="eGw-K1-Mr6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TUe-31-5my" secondAttribute="trailing" constant="23" id="fOZ-Ha-rku"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Eyt-V6-pz0" secondAttribute="bottom" constant="68" id="ggI-ob-3bK"/>
+                            <constraint firstItem="EES-2m-irp" firstAttribute="top" secondItem="ptG-80-Da7" secondAttribute="bottom" constant="1" id="dDV-Zs-wpk"/>
+                            <constraint firstItem="ptG-80-Da7" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" constant="57.100000000000023" id="eGw-K1-Mr6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TUe-31-5my" secondAttribute="trailing" constant="8" id="fOZ-Ha-rku"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Eyt-V6-pz0" secondAttribute="bottom" constant="55" id="ggI-ob-3bK"/>
                             <constraint firstItem="ptG-80-Da7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kdS-3Y-TiF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YOJ-xP-EMh" secondAttribute="trailing" constant="8" id="oQM-3e-aN3"/>
-                            <constraint firstItem="ptG-80-Da7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-21.5" id="oVu-Ja-6DN"/>
+                            <constraint firstItem="ptG-80-Da7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-13.5" id="oVu-Ja-6DN"/>
                             <constraint firstItem="ptG-80-Da7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" constant="112.5" id="wVf-NX-ZnG"/>
                             <constraint firstItem="TUe-31-5my" firstAttribute="bottom" secondItem="EES-2m-irp" secondAttribute="bottom" id="xTs-Al-Yw2"/>
                         </constraints>
@@ -172,6 +179,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6Ey-PD-U3F" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cqa-l5-0jz">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
